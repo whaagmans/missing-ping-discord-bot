@@ -17,7 +17,7 @@ module.exports = {
             guildId: voiceChannel.guild.id,
             adapterCreator: voiceChannel.guild.voiceAdapterCreator
         });
-        const pingAudio = createAudioResource("../ping_missing.mp3")
+        const pingAudio = createAudioResource("ping_missing.mp3")
         const player = createAudioPlayer();
 
         voiceChannelConnection.subscribe(player);
