@@ -16,6 +16,7 @@ for (const file of commandFiles){
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
 
-rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID), { body: commands })
+// Now pushes global commands instead of guild specific. Global commands take an hour or so to cache and take effect on servers this bot is on.
+rest.put(Routes.applicationCommands(process.env.CLIENT_ID), { body: commands })
 	.then(() => console.log('Successfully registered application commands.'))
 	.catch(console.error);
