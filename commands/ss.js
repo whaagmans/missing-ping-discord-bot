@@ -1,3 +1,4 @@
+const { MessageAttachment } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource, AudioPlayerStatus } = require('@discordjs/voice');
 const wait = require('node:timers/promises').setTimeout();
@@ -6,7 +7,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('ss')
         .setDescription('Missing ping!'),
-        
+
     async execute(interaction) {
         const voiceChannel = interaction.member.voice.channel;
 
@@ -23,8 +24,8 @@ module.exports = {
         voiceChannelConnection.subscribe(player);
 
         player.play(pingAudio);
-
-        interaction.reply("MISSING!");
+        let attachment = new MessageAttachment('https://i.redd.it/3c3773yh88081.png')
+        interaction.reply({ files: [attachment]});
 
         player.on(AudioPlayerStatus.Idle, () => {
             player.stop();
