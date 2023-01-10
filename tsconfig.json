@@ -17,7 +17,7 @@
         "typeRoots": [
             "node_modules/@types"
         ],
-        "sourceMap": false,
+        "sourceMap": true,
         "baseUrl": "./",
         "paths": {
             "@/types/*": [
@@ -30,10 +30,9 @@
     },
     "files": [
         "src/Bot.ts",
-        "src/assets/*"
     ],
     "include": [
-        "**/*.ts",
+        "**/*.ts"
     ],
     "exclude": [
         "node_modules",

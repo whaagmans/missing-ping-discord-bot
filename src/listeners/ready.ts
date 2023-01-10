@@ -1,5 +1,5 @@
 import { ActivityType, Client } from 'discord.js';
-import { Commands } from 'src/Commands';
+import { Commands } from '../Commands';
 
 const ready = (client: Client): void => {
 	client.on('ready', async () => {

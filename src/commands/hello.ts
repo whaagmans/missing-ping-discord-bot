@@ -1,4 +1,4 @@
-import { Command } from '@/types/Command';
+import { Command } from '../types/Command';
 import { ApplicationCommandType, Client, CommandInteraction } from 'discord.js';
 
 const Hello: Command = {
