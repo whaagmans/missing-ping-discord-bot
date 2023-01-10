@@ -38,7 +38,6 @@ const SoundPing: Command = {
 		const pingAudio = createAudioResource(
 			join(__dirname, '../assets/ping_missing.mp3')
 		);
-		console.log(pingAudio.playbackDuration);
 		const player = createAudioPlayer();
 
 		voiceChannelConnection.subscribe(player);

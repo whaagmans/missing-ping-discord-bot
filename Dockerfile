@@ -1,28 +1,50 @@
-FROM node as builder
+###################
+# BUILD FOR LOCAL DEVELOPMENT
+###################
 
-# Create app directory
+FROM node:19-alpine As development
+
 WORKDIR /usr/src/app
 
-# Install app dependencies
-COPY package.json yarn.lock ./
+COPY --chown=node:node package*.json ./
 
-RUN yarn install --frozen-lockfile
+RUN yarn
 
-COPY . .
+COPY --chown=node:node . .
+
+USER node
+
+###################
+# BUILD FOR PRODUCTION
+###################
+
+FROM node:19-alpine As build
+
+WORKDIR /usr/src/app
+
+COPY --chown=node:node package*.json ./
+
+COPY --chown=node:node --from=development /usr/src/app/node_modules ./node_modules
+
+COPY --chown=node:node . .
 
 RUN yarn build
 
-FROM node:slim
+ENV NODE_ENV production
 
-# Create app directory
-WORKDIR /usr/src/app
+RUN yarn --frozen-lockfile --prod
 
-# Install app dependencies
-COPY package.json yarn.lock ./
+USER node
 
-RUN yarn install --production --frozen-lockfile
+###################
+# PRODUCTION
+###################
 
-COPY --from=builder /usr/src/app/dist ./dist
+FROM node:19-alpine As production
 
-EXPOSE 8080
+RUN apk add --no-cache ffmpeg
+
+COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
+COPY --chown=node:node --from=build /usr/src/app/dist ./dist
+
 CMD [ "node", "dist/Bot.js" ]
