@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Redeamerz/missing-ping-discord-bot.git"
+    "url": "git+https://github.com/whaagmans/missing-ping-discord-bot.git"
   },
   "author": "Redeamer",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Redeamerz/missing-ping-discord-bot/issues"
+    "url": "https://github.com/whaagmans/missing-ping-discord-bot/issues"
   },
-  "homepage": "https://github.com/Redeamerz/missing-ping-discord-bot#readme",
+  "homepage": "https://github.com/whaagmans/missing-ping-discord-bot#readme",
   "dependencies": {
     "@discordjs/voice": "^0.14.0",
     "discord.js": "^14.7.0",
